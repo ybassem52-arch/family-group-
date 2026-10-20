@@ -390,9 +390,11 @@
     <div class="chat-container">
         <header>
             <div class="header-info">
-                <h3>👨‍👩‍👧‍👦 جروب العيلة</h3>
-                <small id="currentUserDisplay">جاري التحميل...</small>
-            </div>
+    <h3>👨‍👩‍👧‍👦 جروب العيلة</h3>
+    <small id="currentUserDisplay">جاري التحميل...</small>
+    <!-- الزرار الجديد لتغيير الاسم -->
+    <button onclick="changeUsername()" style="background:none; border:none; cursor:pointer; font-size:12px; margin-right:5px;" title="تغيير الاسم">✏️</button>
+</div>
             <button class="theme-btn" onclick="toggleDarkMode()">
                 <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
             </button>
@@ -669,6 +671,16 @@
         };
 
         initApp();
+        window.changeUsername = function() {
+    const currentName = localStorage.getItem("family_username") || "";
+    const newName = prompt("اكتب اسمك الجديد:", currentName);
+    
+    if (newName && newName.trim() !== "") {
+        localStorage.setItem("family_username", newName.trim());
+        document.getElementById("currentUserDisplay").innerText = "أهلاً: " + newName.trim();
+        alert("تم تغيير اسمك بنجاح! 🚀");
+    }
+};
     </script>
 </body>
 </html>
